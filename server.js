@@ -20,6 +20,8 @@ MongoClient.connect( connectionString )
     const db = client.db('star-wars-quotes')
     const quotesCollection = db.collection('quotes')
 
+    app.set('view engine', 'ejs')
+
     app.use(bodyParser.urlencoded({ extended: true }))
 
     // app.use()
@@ -28,7 +30,10 @@ MongoClient.connect( connectionString )
         .find()
         .toArray()
         .then(results => {
-          console.log(results)
+          // console.log(results)
+          console.table(results)
+          res.render('index.ejs', { quotes: results })
+          // res.sendFile(__dirname + '/index.html')
         })
         .catch(error => console.error(error))
     })
