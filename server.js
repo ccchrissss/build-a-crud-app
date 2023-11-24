@@ -23,6 +23,8 @@ MongoClient.connect( connectionString )
     app.set('view engine', 'ejs')
 
     app.use(bodyParser.urlencoded({ extended: true }))
+    app.use(express.static('public'))
+    app.use(bodyParser.json())
 
     // app.use()
     app.get('/', (req, res) => {
@@ -45,7 +47,27 @@ MongoClient.connect( connectionString )
         })
         .catch(error => console.error(error))
     })
-    // app.listen()
+
+    app.put('/quotes', (req, res) => {
+      quotesCollection
+        .findOneAndUpdate(
+          { name: 'Yoda' }, 
+          {
+            $set: {
+              name: req.body.name,
+              quote: req.body.quote,
+            },
+          },
+          {
+            upsert: true,
+          }
+        )
+        .then(result => {
+          console.log(result)
+        })
+        .catch(error => console.error(error))
+    })
+
 
 
 
