@@ -51,7 +51,7 @@ MongoClient.connect( connectionString )
     app.put('/quotes', (req, res) => {
       quotesCollection
         .findOneAndUpdate(
-          { name: 'Yoda' }, 
+          { name: 'Yoda'.toLowerCase() }, 
           {
             $set: {
               name: req.body.name,
@@ -64,9 +64,20 @@ MongoClient.connect( connectionString )
         )
         .then(result => {
           console.log(result)
+          res.json('Success')
         })
         .catch(error => console.error(error))
     })
+
+    // fetch( { 
+    //   // request
+    // })
+    //   .then(res => {
+    //     if (res.ok) return res.json()
+    //   })
+    //   .then(response => {
+    //     console.log(response)
+    //   })
 
 
 
