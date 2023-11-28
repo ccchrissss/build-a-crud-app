@@ -69,16 +69,6 @@ MongoClient.connect( connectionString )
         .catch(error => console.error(error))
     })
 
-    // fetch( { 
-    //   // request
-    // })
-    //   .then(res => {
-    //     if (res.ok) return res.json()
-    //   })
-    //   .then(response => {
-    //     console.log(response)
-    //   })
-
 
 
 
