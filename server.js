@@ -51,7 +51,7 @@ MongoClient.connect( connectionString )
     app.put('/quotes', (req, res) => {
       quotesCollection
         .findOneAndUpdate(
-          { name: 'Yoda'.toLowerCase() }, 
+          { name: 'Yoda' }, 
           {
             $set: {
               name: req.body.name,
@@ -65,6 +65,22 @@ MongoClient.connect( connectionString )
         .then(result => {
           console.log(result)
           res.json('Success')
+        })
+        .catch(error => console.error(error))
+    })
+
+    app.delete('/quotes', (req, res) => {
+      quotesCollection
+        .deleteOne(
+          { name: req.body.name },
+        )
+        .then( result => {
+          if (result.deletedCount === 0) {
+            return res.json('No quote to delete')
+          }
+          res.json(`Deleted Darth Vader's quote`)
+          // the below console.log appears in the console inwhich the server is launched. i.e. the vs code terminal
+          console.log('i deleted darf vaderrr')
         })
         .catch(error => console.error(error))
     })

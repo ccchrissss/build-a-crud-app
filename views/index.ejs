@@ -12,33 +12,51 @@
   <!-- <h2>Build a CRUD app</h2> -->
   <h3>by: Chris</h3>
 
-  <h2>Add a quote</h2>
-  <form action="/quotes" method="POST">
-    <input type="text" placeholder="name" name="name" />
-    <input type="text" placeholder="quote" name="quote" />
-    <button type="submit">Submit</button>
-  </form>
-
-  <div>
-    <h2>Darth Vader invades!</h2>
-    <p>replace first Yoda's quote with a quote written by Darth Vader</p>
-    <button id="update-button">Replace Yoda's quote</button>
-  </div>
-
-  <h2>Quotes</h2>
+  <section>
+    <h2>Add a quote</h2>
+    <form action="/quotes" method="POST">
+      <input type="text" placeholder="name" name="name" />
+      <input type="text" placeholder="quote" name="quote" />
+      <button type="submit">Submit</button>
+    </form>
+  </section>
   
-  <ul class="quotes">
-    
-    <% for (let i = 0; i < quotes.length; i++) { %>
-    <li class="quote">
+  <br>
 
+  <section>
+    <div>
+      <h2>Darth Vader invades!</h2>
+      <p>replace first Yoda's quote with a quote written by Darth Vader</p>
+      <button id="update-button">Replace Yoda's quote</button>
+    </div>
+  </section>
+  
+  <br>
 
-      <span><%= quotes[i].name.toUpperCase() %></span>:
-      <span><%= quotes[i].quote %></span>
+  <section>
+    <h2>Remove Darth Vader</h2>
+    <p>
+      Delete one of Darth Vader's quotes! Does nothing if there are no more Darth Vader quotes
+    </p>
+    <button id="delete-button">Delete Darth Vader's quote</button>
+    <div id="message"></div>
+  </section>
+
+  <section>
+    <h2>Quotes</h2>
     
-    </li>
-    <% } %>
-  </ul>
+    <ul class="quotes">
+      
+      <% for (let i = 0; i < quotes.length; i++) { %>
+      <li class="quote">
+
+        <span><%= quotes[i].name %></span>:
+        <span><%= quotes[i].quote %></span>
+      
+      </li>
+      <% } %>
+    </ul>
+  </section>
   
   <script src="/main.js"></script>
 </body>
