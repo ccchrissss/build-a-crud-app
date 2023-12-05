@@ -1,4 +1,10 @@
 const update = document.querySelector('#update-button')
+const yodaMessageDiv = document.querySelector('#yoda-message')
+
+
+// const windowLoadingComplete = window.addEventListener.('')
+
+// 
 
 // attach the event listener to update button
 // use fetch api to trigger put request
@@ -16,7 +22,17 @@ update.addEventListener('click', _ => {
       if (res.ok) return res.json()
     })
     .then(response => {
-      window.location.reload(true)
+      if (response === 'No Yoda quote to update') {
+
+        yodaMessageDiv.textContent = 'No Yoda quotes left, but power hungry Darth Vader invades nonetheless. Watchout!'
+
+        setTimeout( () => {
+          window.location.reload()
+        }, '3000')
+
+      } else {
+        // window.location.reload()
+      }
     })
 })
 
@@ -37,9 +53,9 @@ deleteButton.addEventListener('click', _ => {
     })
     .then(response => {
       if (response === 'No quote to delete') {
-        messageDiv.textContent = 'No more Darth Vader quotes to delete'
+        messageDiv.textContent = 'No more Darth Vader quotes to delete';
       } else {
-      window.location.reload()
+        window.location.reload()
       }
     })
     .catch(error => console.error(error))
